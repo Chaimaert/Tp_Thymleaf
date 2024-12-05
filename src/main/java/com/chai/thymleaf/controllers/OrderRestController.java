@@ -2,6 +2,7 @@ package com.chai.thymleaf.controllers;
 
 import com.chai.thymleaf.models.Order;
 import com.chai.thymleaf.services.OrderService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/orders")
 public class OrderRestController {
+
     private final OrderService orderService;
 
     public OrderRestController(OrderService orderService) {
@@ -27,8 +29,11 @@ public class OrderRestController {
 
     @PostMapping
     public Order addOrder(@RequestBody Order order) {
+        System.out.println("Received order: " + order);
         return orderService.saveOrder(order);
     }
+
+
 
     @PutMapping("/{id}")
     public Order updateOrder(@PathVariable Long id, @RequestBody Order updatedOrder) {

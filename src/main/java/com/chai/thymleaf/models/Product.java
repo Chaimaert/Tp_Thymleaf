@@ -1,5 +1,6 @@
 package com.chai.thymleaf.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -14,8 +15,10 @@ public class Product {
     private Double price;
     private String category;
 
-    @ManyToMany(mappedBy = "products") // Ensure this matches the field name in the Order entity
+    @ManyToMany(mappedBy = "products")
+    @JsonBackReference
     private List<Order> orders;
+
 
     // Getters and Setters
     public Long getId() {

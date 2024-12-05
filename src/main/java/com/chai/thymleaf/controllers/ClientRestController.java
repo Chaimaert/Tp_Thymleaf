@@ -9,6 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/clients")
 public class ClientRestController {
+
     private final ClientService clientService;
 
     public ClientRestController(ClientService clientService) {

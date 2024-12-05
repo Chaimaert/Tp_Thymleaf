@@ -1,10 +1,12 @@
 package com.chai.thymleaf.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 public class Client {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,7 +15,8 @@ public class Client {
     private String lastName;
     private String email;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Order> orders;
 
     // Getters and Setters
@@ -41,14 +44,6 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public List<Order> getOrders() {
         return orders;
     }
@@ -56,5 +51,15 @@ public class Client {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
+
+
 

@@ -16,8 +16,11 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> getAllClients() {
-        return clientRepository.findAll();
+        List<Client> clients = clientRepository.findAll();
+        System.out.println("Retrieved clients: " + clients);
+        return clients;
     }
+
 
     @Override
     public Client getClientById(Long id) {
